@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='utf-8'?>
+<plugin id="io.fornace.BluetoothNFC" version="0.0.1" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
+	<name>BluetoothNFC</name>
+	<js-module name="BluetoothNFC" src="www/BluetoothNFC.js">
+		<clobbers target="cordova.plugins.BluetoothNFC" />
+	</js-module>
+	<platform name="android">
+		<config-file parent="/*" target="res/xml/config.xml">
+			<feature name="BluetoothNFC">
+				<param name="android-package" value="io.fornace.BluetoothNFC.BluetoothNFC" />
+			</feature>
+
+
+		</config-file>
+		<config-file parent="/*" target="AndroidManifest.xml">
+			<uses-permission android:name="android.permission.BLUETOOTH" />
+    		<uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+
+    		<uses-feature
+		        android:name="android.hardware.bluetooth_le"
+		        android:required="true" />
+		</config-file>
+		<source-file src="src/android/BluetoothNFC.java" target-dir="src/io/fornace/BluetoothNFC/BluetoothNFC" />
+		<source-file src="src/android/libs/acsbt-1.0.0preview7.jar" target-dir="libs" />
+	</platform>
+	<platform name="ios">
+		<config-file parent="/*" target="config.xml">
+			<feature name="BluetoothNFC">
+				<param name="ios-package" value="BluetoothNFC" />
+			</feature>
+		</config-file>
+		<header-file src="src/ios/ABTAcr1255uj1Reader.h" />
+		<header-file src="src/ios/ABTAcr3901us1Reader.h" />
+		<header-file src="src/ios/ABTBluetoothReader.h" />
+		<header-file src="src/ios/ABTBluetoothReaderManager.h" />
+		<header-file src="src/ios/ABTError.h" />
+		<header-file src="src/ios/ACSBluetooth.h" />
+		<source-file src="src/ios/BluetoothNFC.h" />
+		<source-file src="src/ios/ABDHex.h" />
+
+		<source-file src="src/ios/BluetoothNFC.m" />
+		<source-file src="src/ios/ABDHex.m" />
+
+		<source-file src="src/ios/libACSBluetooth.a" framework="true" />
+	</platform>
+
+
+</plugin>
